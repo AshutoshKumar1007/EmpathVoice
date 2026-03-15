@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+transformers
+torch
+numpy
+edge-tts
+nest_asyncio
+python-multipart
