@@ -175,3 +175,7 @@ Response:
 4. Practical deployability
    - FastAPI + edge-tts pipeline is simple and easy to demo.
 
+## Note
+
+Recent/sample generated audio files can be found in the `audio_outputs/` folder.
+
