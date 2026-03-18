@@ -1,6 +1,6 @@
-# Darvix Empathy Engine
+# EmpathVoice
 
-Darvix Empathy Engine is a FastAPI-based text-to-speech service that tries to make generated voice sound emotionally appropriate.
+EmpathVoice is a FastAPI-based text-to-speech service that tries to make generated voice sound emotionally appropriate.
 
 In simple words:
 
