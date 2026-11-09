@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# Generated audio (runtime artifacts, never committed)
+audio_outputs/
+!audio_outputs/.gitkeep
+
+# Hugging Face / Torch caches
+.cache/
+*.pt
+*.bin
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Frontend (added in Stage 4)
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

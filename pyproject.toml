@@ -1,0 +1,24 @@
+[project]
+name = "empathvoice"
+version = "0.2.0"
+description = "Emotion-aware text-to-speech with a transparent prosody pipeline."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "integration: tests that load real models or call the live TTS service (deselected by default; run with -m integration)",
+]
+# Integration tests need model downloads / network, so skip them unless asked.
+addopts = "-m 'not integration'"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# E501: line length handled by formatter.
+# B008: FastAPI's `Depends()` in argument defaults is the intended pattern.
+ignore = ["E501", "B008"]

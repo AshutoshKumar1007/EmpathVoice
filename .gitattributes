@@ -1,0 +1,9 @@
+# Normalize line endings so the working tree stops showing phantom CRLF diffs.
+# Text files are stored with LF in the repo and checked out with LF everywhere.
+* text=auto eol=lf
+
+# Binary assets: never touch.
+*.mp3 binary
+*.png binary
+*.pt  binary
+*.bin binary

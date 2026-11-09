@@ -1,8 +1,17 @@
-fastapi
-uvicorn
-transformers
-torch
-numpy
-edge-tts
-nest_asyncio
-python-multipart
+# Runtime dependencies. Pinned with compatible-release (~=) specifiers so patch
+# updates are allowed but majors/minors stay reproducible. For a hard lock,
+# generate a requirements.lock with `pip freeze` or pip-tools in CI.
+
+# Web framework / server
+fastapi~=0.162
+uvicorn[standard]~=0.34
+pydantic~=2.11
+pydantic-settings~=2.7
+
+# ML / inference
+torch~=2.6
+transformers~=4.48
+numpy~=2.1
+
+# Text-to-speech
+edge-tts~=7.0
