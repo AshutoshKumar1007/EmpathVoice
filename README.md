@@ -13,10 +13,13 @@ pinned: false
 
 Emotion-aware text-to-speech with a transparent prosody pipeline.
 
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces)
+[![Live Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Live%20Demo-blue?style=flat&logo=huggingface)](https://huggingface.co/spaces/Ashu1007/EmpathVoice)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![React 18](https://img.shields.io/badge/react-18-61dafb.svg)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.162+-009688.svg)](https://fastapi.tiangolo.com/)
+
+> 🎙️ **Live Interactive Demo:** Experience EmpathVoice online directly in your browser:  
+> 👉 **[huggingface.co/spaces/Ashu1007/EmpathVoice](https://huggingface.co/spaces/Ashu1007/EmpathVoice)**
 
 EmpathVoice reads a piece of text, estimates its emotional character with two
 complementary models, maps that estimate to concrete speech-delivery parameters
@@ -34,7 +37,11 @@ delivery, directly from the model outputs.
 ## Preview
 
 <p align="center">
-  <img src="frontend.png" alt="EmpathVoice UI Screenshot" width="650" />
+  <a href="https://huggingface.co/spaces/Ashu1007/EmpathVoice" target="_blank" rel="noopener noreferrer">
+    <img src="frontend.png" alt="EmpathVoice UI Screenshot" width="650" />
+  </a>
+  <br />
+  <sub><em>Click image to try the live interactive demo on Hugging Face Spaces</em></sub>
 </p>
 
 ---
@@ -202,40 +209,6 @@ docker run -p 7860:7860 empathvoice
 ```
 
 Open http://127.0.0.1:7860.
-
----
-
-## Deployment & Live Demo
-
-Because EmpathVoice runs two PyTorch transformer models in memory (`RoBERTa-GoEmotions` and `VAD-BERT`), it requires at least ~1.5 GB of RAM.
-
-### Deploying to Hugging Face Spaces (100% Free Tier via Gradio SDK)
-
-Hugging Face Spaces allows you to host an interactive demo of EmpathVoice for free:
-
-1. **Create a Space**: Go to [huggingface.co/new-space](https://huggingface.co/new-space).
-2. **Select Space SDK**: Choose **Gradio** (which is 100% free with no credit card required).
-3. **Space Hardware**: Select the **Free** tier (CPU Basic or ZeroGPU).
-4. **Deploy**:
-   - Push this repository directly to your Space's Git remote:
-     ```bash
-     git remote add space https://huggingface.co/spaces/<your-username>/<space-name>
-     git push space main
-     ```
-   - *Or* link your GitHub repository in Space Settings for automated deployments.
-5. Hugging Face automatically reads the YAML frontmatter in this `README.md`, installs `requirements.txt`, and runs **`app.py`** to serve your live demo at `https://huggingface.co/spaces/<your-username>/<space-name>`.
-
-### Containerized Deployment (Railway / Render / Docker)
-
-The repository also includes a production-ready **`Dockerfile`** that builds both the React frontend and FastAPI backend into a single container:
-
-* **Local Docker**:
-  ```bash
-  docker build -t empathvoice .
-  docker run -p 7860:7860 empathvoice
-  ```
-* **Railway**: Connect your GitHub repo; Railway automatically detects the `Dockerfile` and deploys both backend and React frontend.
-* **Render**: Deploy as a Web Service. Select the **Starter tier (2 GB RAM)** since the free tier (512 MB) will run out of memory when loading PyTorch models.
 
 ---
 
