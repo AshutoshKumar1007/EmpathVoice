@@ -17,6 +17,13 @@ os.environ["GRADIO_SSR_MODE"] = "False"
 import gradio as gr
 import torch
 
+try:
+    import spaces
+    gpu_decorator = spaces.GPU
+except (ImportError, AttributeError):
+    def gpu_decorator(fn):
+        return fn
+
 from app.core.config import get_settings
 from app.ml.manager import ModelManager, ModelStatus
 from app.tts.pause_injection import inject_pauses
@@ -41,6 +48,7 @@ DEFAULT_VOICE_LABEL = next(
 )
 
 
+@gpu_decorator
 def run_pipeline(text: str, voice_label: str) -> tuple[dict[str, float], str, str, str]:
     """Run emotion analysis and speech synthesis with minimal memory footprint."""
     clean_text = text.strip()
