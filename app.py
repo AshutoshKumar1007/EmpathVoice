@@ -105,7 +105,7 @@ custom_css = """
 .output-audio { margin-top: 10px; }
 """
 
-with gr.Blocks(title="EmpathVoice Studio") as demo:
+with gr.Blocks(title="EmpathVoice Studio", theme=gr.themes.Soft(), css=custom_css) as demo:
     gr.Markdown(
         """
 # 🎙️ EmpathVoice
@@ -170,6 +170,4 @@ if __name__ == "__main__":
         server_name="0.0.0.0",
         server_port=7860,
         ssr_mode=False,
-        theme=gr.themes.Soft(),
-        css=custom_css,
     )
