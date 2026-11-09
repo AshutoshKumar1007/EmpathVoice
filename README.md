@@ -1,3 +1,14 @@
+---
+title: EmpathVoice
+emoji: 🎙️
+colorFrom: pink
+colorTo: indigo
+sdk: gradio
+sdk_version: 4.44.1
+app_file: app.py
+pinned: false
+---
+
 # EmpathVoice
 
 Emotion-aware text-to-speech with a transparent prosody pipeline.
@@ -198,26 +209,33 @@ Open http://127.0.0.1:7860.
 
 Because EmpathVoice runs two PyTorch transformer models in memory (`RoBERTa-GoEmotions` and `VAD-BERT`), it requires at least ~1.5 GB of RAM.
 
-### Deploying to Hugging Face Spaces (Recommended — Free 16GB RAM)
+### Deploying to Hugging Face Spaces (100% Free Tier via Gradio SDK)
 
-[Hugging Face Spaces](https://huggingface.co/spaces) is the ideal host for this project:
+Hugging Face Spaces allows you to host an interactive demo of EmpathVoice for free:
 
 1. **Create a Space**: Go to [huggingface.co/new-space](https://huggingface.co/new-space).
-2. **Select Space SDK**: Choose **Docker** (Blank template).
-3. **Hardware Tier**: Select the **Free** tier (2 vCPU, 16 GB RAM).
+2. **Select Space SDK**: Choose **Gradio** (which is 100% free with no credit card required).
+3. **Space Hardware**: Select the **Free** tier (CPU Basic or ZeroGPU).
 4. **Deploy**:
-   - Push this repository directly to the Hugging Face Space Git remote:
+   - Push this repository directly to your Space's Git remote:
      ```bash
      git remote add space https://huggingface.co/spaces/<your-username>/<space-name>
      git push space main
      ```
-   - *Or* connect your GitHub repository directly in the Space settings for automatic deployment on push.
-5. Hugging Face builds the included `Dockerfile` (which pre-caches the models) and hosts your live app at `https://huggingface.co/spaces/<your-username>/<space-name>`.
+   - *Or* link your GitHub repository in Space Settings for automated deployments.
+5. Hugging Face automatically reads the YAML frontmatter in this `README.md`, installs `requirements.txt`, and runs **`app.py`** to serve your live demo at `https://huggingface.co/spaces/<your-username>/<space-name>`.
 
-### Deploying to Railway or Render
+### Containerized Deployment (Railway / Render / Docker)
 
-* **Railway**: Connect your GitHub repository. Railway automatically detects the `Dockerfile` and deploys it with containerized memory allocation.
-* **Render**: Deploy as a Web Service from Git or Docker. Select at least the **Starter tier (2 GB RAM)**, as the Free tier (512 MB RAM) will hit Out-Of-Memory limits when loading PyTorch models.
+The repository also includes a production-ready **`Dockerfile`** that builds both the React frontend and FastAPI backend into a single container:
+
+* **Local Docker**:
+  ```bash
+  docker build -t empathvoice .
+  docker run -p 7860:7860 empathvoice
+  ```
+* **Railway**: Connect your GitHub repo; Railway automatically detects the `Dockerfile` and deploys both backend and React frontend.
+* **Render**: Deploy as a Web Service. Select the **Starter tier (2 GB RAM)** since the free tier (512 MB) will run out of memory when loading PyTorch models.
 
 ---
 
