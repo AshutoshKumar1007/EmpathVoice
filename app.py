@@ -7,8 +7,12 @@ through an interactive, memory-efficient studio interface.
 from __future__ import annotations
 
 import asyncio
+import os
 import tempfile
 from pathlib import Path
+
+# Disable experimental Gradio 5 Node.js SSR server to ensure stable container runtime
+os.environ["GRADIO_SSR_MODE"] = "False"
 
 import gradio as gr
 import torch
@@ -101,7 +105,7 @@ custom_css = """
 .output-audio { margin-top: 10px; }
 """
 
-with gr.Blocks(title="EmpathVoice Studio", css=custom_css, theme=gr.themes.Soft()) as demo:
+with gr.Blocks(title="EmpathVoice Studio") as demo:
     gr.Markdown(
         """
 # 🎙️ EmpathVoice
@@ -162,4 +166,10 @@ EmpathVoice estimates emotional tone using **GoEmotions** and **VAD-BERT**, tran
     )
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        ssr_mode=False,
+        theme=gr.themes.Soft(),
+        css=custom_css,
+    )
