@@ -17,5 +17,6 @@ numpy~=2.1
 edge-tts~=7.0
 
 # Spaces UI / Demo
-gradio~=4.44
+gradio>=5.0.0,<6.0.0
+
 
